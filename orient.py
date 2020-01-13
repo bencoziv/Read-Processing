@@ -64,7 +64,7 @@ def rev(score):
 
 
 def revcomp(seq):
-    # revcomp creates a reverse compliment of a given string of nucleotides
+    """revcomp creates a reverse compliment of a given string of nucleotides"""
     rev = seq[::-1]
     new = ''
     for n in rev:
@@ -83,15 +83,15 @@ def revcomp(seq):
 
 
 def header(header,i1,i2):
-    #appends i1_i2 to the end of the header line, returns the adjusted header
+    """appends i1_i2 to the end of the header line, returns the adjusted header"""
     sub = '_'+i1+'_'+i2
     x = header + sub
     return x
 
 
 def qual(q,seq):
-    #takes a quality score and checks if the mean phred score of a given score line is greater and returns true if it is
-    #and false if not
+    """takes a quality score and checks if the mean phred score of a given score line is greater and returns true if it is
+    and false if not"""
     sum=0
     for score in seq:
         # sums all quality scores
@@ -144,12 +144,12 @@ def despace(t,l1,s1,l2,s2,fw,rv):
 
 
 def demult(r1,r2,i1,i2,bar,q,t,fw,rv,sample):
-    #takes read and index files record by record, checks if indexes contain an N, and if it does places it in low quality,
-    #checks if average read quality is above or equal to user input threshold, if not places record in low quality files,
-    #checks if index 1 is the reverse compliment of index two, if not places in unmatched index files, if true places
-    #in that barcode file. All headers are appended to include the barcodes at the start. Also includes counters  All
-    # headers are appended to include the barcodes at the start. Returns counts for each index, unknown indexes,
-    # and index hopped indices as well as creating files
+    """takes read and index files record by record, checks if indexes contain an N, and if it does places it in low quality,
+    checks if average read quality is above or equal to user input threshold, if not places record in low quality files,
+    checks if index 1 is the reverse compliment of index two, if not places in unmatched index files, if true places
+    in that barcode file. All headers are appended to include the barcodes at the start. Also includes counters  All
+     headers are appended to include the barcodes at the start. Returns counts for each index, unknown indexes,
+     and index hopped indices as well as creating files"""
 
     with gzip.open(r1, 'rt') as r1, gzip.open(r2, 'rt') as r2, gzip.open(i1, 'rt') as i1, gzip.open(i2, 'rt') as i2, \
     open('unknown_fw.fq', 'a') as uf, open('unknown_rv.fq', 'a') as ur:
